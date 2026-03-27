@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 30% 5%;
+    --foreground: 0 0% 100%;
+    --card: 222 30% 9%;
+    --card-foreground: 0 0% 100%;
+    --card-hover: 222 25% 12%;
+    --popover: 222 30% 9%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 191 100% 50%;
+    --primary-foreground: 220 30% 5%;
+    --secondary: 252 90% 67%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 222 25% 12%;
+    --muted-foreground: 220 20% 61%;
+    --accent: 252 90% 67%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.07;
+    --border-hover: 191 100% 50% / 0.35;
+    --input: 0 0% 100% / 0.07;
+    --ring: 191 100% 50%;
+    --radius: 0.5rem;
+    --text-muted: 228 22% 36%;
+    --label-challenge: 0 100% 70%;
+    --label-solution: 191 100% 50%;
+    --label-result: 252 90% 67%;
+    --sidebar-background: 222 30% 9%;
+    --sidebar-foreground: 220 20% 61%;
+    --sidebar-primary: 191 100% 50%;
+    --sidebar-primary-foreground: 220 30% 5%;
+    --sidebar-accent: 222 25% 12%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 100% / 0.07;
+    --sidebar-ring: 191 100% 50%;
+  }
+
+  .dark {
+    --background: 220 30% 5%;
+    --foreground: 0 0% 100%;
+    --card: 222 30% 9%;
+    --card-foreground: 0 0% 100%;
+    --card-hover: 222 25% 12%;
+    --popover: 222 30% 9%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 191 100% 50%;
+    --primary-foreground: 220 30% 5%;
+    --secondary: 252 90% 67%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 222 25% 12%;
+    --muted-foreground: 220 20% 61%;
+    --accent: 252 90% 67%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.07;
+    --border-hover: 191 100% 50% / 0.35;
+    --input: 0 0% 100% / 0.07;
+    --ring: 191 100% 50%;
+    --text-muted: 228 22% 36%;
+    --label-challenge: 0 100% 70%;
+    --label-solution: 191 100% 50%;
+    --label-result: 252 90% 67%;
+    --sidebar-background: 222 30% 9%;
+    --sidebar-foreground: 220 20% 61%;
+    --sidebar-primary: 191 100% 50%;
+    --sidebar-primary-foreground: 220 30% 5%;
+    --sidebar-accent: 222 25% 12%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 100% / 0.07;
+    --sidebar-ring: 191 100% 50%;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .glass-card:hover {
+    background: hsl(var(--card-hover));
+    border-color: hsl(var(--border-hover));
+  }
+
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: hsl(var(--primary));
+    border: 1px solid hsl(191 100% 50% / 0.25);
+    border-radius: 20px;
+    padding: 5px 14px;
+    background: hsl(191 100% 50% / 0.05);
+  }
+
+  .stat-pill {
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 5px 13px;
+    border-radius: 20px;
+    border: 1px solid hsl(191 100% 50% / 0.2);
+    background: hsl(191 100% 50% / 0.06);
+    color: hsl(var(--primary));
+  }
+
+  .cyan-glow-btn {
+    border: 1px solid hsl(191 100% 50% / 0.2);
+    background: hsl(191 100% 50% / 0.05);
+    color: hsl(var(--primary));
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+
+  .cyan-glow-btn:hover {
+    background: hsl(191 100% 50% / 0.1);
+    box-shadow: 0 0 16px hsl(191 100% 50% / 0.15);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
