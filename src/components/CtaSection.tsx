@@ -195,7 +195,7 @@ const CtaSection = () => (
           </motion.a>
 
           <motion.a
-            href="https://www.linkedin.com/in/yehia-samy"
+            href="www.linkedin.com/in/yehiasamymohamed"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
