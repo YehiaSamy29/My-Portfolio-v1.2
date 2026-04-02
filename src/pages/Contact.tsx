@@ -67,10 +67,10 @@ const Contact = () => {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.companyEmail))
       e.companyEmail = "Invalid company email";
     if (!form.companyWebsite.trim()) {
-      e.companyWebsite = "Required";
-    } else if (!/^www\.[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+/.test(form.companyWebsite)) {
-      e.companyWebsite = "Must start with www. (e.g. www.example.com)";
-    }
+  e.companyWebsite = "Required";
+} else if (!/^(https?:\/\/|www\.)\S+\.\S+/.test(form.companyWebsite)) {
+  e.companyWebsite = "Enter a valid URL (e.g. www.example.com or https://example.com)";
+}
     if (!form.role) e.role = "Required";
     if (form.improvements.length === 0) e.improvements = "Select at least one";
     setErrors(e);
