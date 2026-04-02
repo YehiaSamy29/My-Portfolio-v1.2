@@ -19,6 +19,7 @@ interface FormData {
   fullName: string;
   email: string;
   companyName: string;
+  companyEmail: string;
   companyWebsite: string;
   role: string;
   improvements: string[];
@@ -29,6 +30,7 @@ const initialForm: FormData = {
   fullName: "",
   email: "",
   companyName: "",
+  companyEmail: "",
   companyWebsite: "",
   role: "",
   improvements: [],
@@ -61,8 +63,14 @@ const Contact = () => {
     if (!form.email.trim()) e.email = "Required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email";
     if (!form.companyName.trim()) e.companyName = "Required";
-    if (form.companyWebsite && !/^https?:\/\/.+/.test(form.companyWebsite))
-      e.companyWebsite = "Must start with http:// or https://";
+    if (!form.companyEmail.trim()) e.companyEmail = "Required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.companyEmail))
+      e.companyEmail = "Invalid company email";
+    if (!form.companyWebsite.trim()) {
+      e.companyWebsite = "Required";
+    } else if (!/^www\.[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+/.test(form.companyWebsite)) {
+      e.companyWebsite = "Must start with www. (e.g. www.example.com)";
+    }
     if (!form.role) e.role = "Required";
     if (form.improvements.length === 0) e.improvements = "Select at least one";
     setErrors(e);
@@ -154,17 +162,22 @@ const Contact = () => {
               <input type="email" className={inputClass("email")} style={inputBg} value={form.email} onChange={(e) => set("email", e.target.value)} required />
             </Field>
 
-            {/* Row 3 */}
+            {/* Row 3 — Company Name + Company Email side by side */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Field label="Company Name" error={errors.companyName}>
                 <input className={inputClass("companyName")} style={inputBg} value={form.companyName} onChange={(e) => set("companyName", e.target.value)} required />
               </Field>
-              <Field label="Company Website" error={errors.companyWebsite} optional>
-                <input className={inputClass("companyWebsite")} style={inputBg} placeholder="https://" value={form.companyWebsite} onChange={(e) => set("companyWebsite", e.target.value)} />
+              <Field label="Company Email" error={errors.companyEmail}>
+                <input type="email" className={inputClass("companyEmail")} style={inputBg} value={form.companyEmail} onChange={(e) => set("companyEmail", e.target.value)} required />
               </Field>
             </div>
 
-            {/* Row 4 */}
+            {/* Row 4 — Company Website (required, www. format) */}
+            <Field label="Company Website" error={errors.companyWebsite}>
+              <input className={inputClass("companyWebsite")} style={inputBg} placeholder="www.example.com" value={form.companyWebsite} onChange={(e) => set("companyWebsite", e.target.value)} required />
+            </Field>
+
+            {/* Row 5 */}
             <Field label="Your Role" error={errors.role}>
               <div className="relative">
                 <button
@@ -176,12 +189,12 @@ const Contact = () => {
                   <span className={form.role ? "text-foreground" : "text-muted-foreground"}>
                     {form.role || "Select your role..."}
                   </span>
-                  <ChevronDown 
-                    size={20} 
-                    className={`text-[hsl(191,100%,50%)] transition-transform ${isRoleDropdownOpen ? "rotate-180" : ""}`} 
+                  <ChevronDown
+                    size={20}
+                    className={`text-[hsl(191,100%,50%)] transition-transform ${isRoleDropdownOpen ? "rotate-180" : ""}`}
                   />
                 </button>
-                
+
                 <AnimatePresence>
                   {isRoleDropdownOpen && (
                     <motion.div
@@ -215,12 +228,12 @@ const Contact = () => {
               </div>
             </Field>
 
-            {/* Row 5 — Checkboxes */}
+            {/* Row 6 — Checkboxes */}
             <Field label="What are you hoping to improve?" error={errors.improvements}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                 {improvementOptions.map((opt) => (
-                  <label 
-                    key={opt} 
+                  <label
+                    key={opt}
                     className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-all cursor-pointer ${
                       form.improvements.includes(opt)
                         ? "border-[hsl(191,100%,50%,0.5)] bg-[hsl(191,100%,50%,0.08)] text-foreground"
@@ -239,7 +252,7 @@ const Contact = () => {
               </div>
             </Field>
 
-            {/* Row 6 */}
+            {/* Row 7 */}
             <Field label="Notes" optional>
               <textarea rows={4} className={inputClass("notes")} style={inputBg} placeholder="Any additional information, questions, or context..." value={form.notes} onChange={(e) => set("notes", e.target.value)} />
             </Field>
