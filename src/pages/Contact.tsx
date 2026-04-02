@@ -76,7 +76,7 @@ const Contact = () => {
     setIsSubmitting(true);
     try {
       const res = await fetch(
-        "https://yehiasamy-ai.app.n8n.cloud/webhook/80042474-9904-4424-ad63-426aabdc20c2",
+        "https://yehiasamy-auto.app.n8n.cloud/webhook-test/d1b072a4-9a24-4a76-af2f-da4104b169b7",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
