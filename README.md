@@ -28,7 +28,7 @@ I design and build AI-powered automation systems for growing businesses — turn
 
 ## Contact
 
-- Website: [yehia-samy.com](https://yehia.vercel.app)
+- Website: [yehia-samy](https://yehia.vercel.app)
 - Email: yehiasamy.dev@gmail.com
 - Twitter: [@YehiaSamy341266](https://x.com/YehiaSamy341266)
 - WhatsApp: +20 104 011 1238
