@@ -320,20 +320,19 @@ const ProjectsSection = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-block px-4 py-1.5 rounded-full bg-[hsl(252,90%,67%,0.1)] border border-[hsl(252,90%,67%,0.3)] mb-4">
-            <span className="text-xs font-semibold text-[hsl(252,90%,67%)] uppercase tracking-wider">Portfolio</span>
-          </div>
-          <div className="section-badge mx-auto w-fit mb-4">REAL RESULTS</div>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold">
-            Systems that turn{" "}
-            <span className="gradient-text">time into revenue.</span>
+          <div className="section-badge-secondary mx-auto w-fit mb-6">PORTFOLIO / REAL RESULTS</div>
+          <h2 className="font-display text-5xl font-bold mb-6">
+            Systems that turn <span className="gradient-text">time into revenue.</span>
           </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
+            Proven AI solutions built for real businesses to maximize productivity and eliminate human errors.
+          </p>
         </motion.div>
 
         {/* Grid */}

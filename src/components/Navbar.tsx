@@ -62,8 +62,8 @@ const Navbar = () => {
   };
 
   const isActive = (link: typeof navLinks[0]) => {
-    if (link.isRoute) return false;
-    return activeSection === link.sectionId;
+    if (link.isRoute) return location.pathname === link.href;
+    return activeSection === link.sectionId && location.pathname === "/";
   };
 
   return (
@@ -110,12 +110,24 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) =>
-              link.isRoute ? (
+            {navLinks.map((link) => {
+              const active = isActive(link);
+              return link.isRoute ? (
                 <Link
                   key={link.label}
                   to={link.href}
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
+                  className={`text-base transition-colors pb-1 ${
+                    active
+                      ? "text-[hsl(191,100%,50%)] border-b-2 border-[hsl(191,100%,50%)]"
+                      : "text-muted-foreground hover:text-foreground border-b-2 border-transparent"
+                  }`}
+                  style={
+                    active
+                      ? {
+                          textShadow: '0 0 25px hsl(191 100% 50% / 0.8), 0 0 50px hsl(191 100% 50% / 0.5), 0 0 75px hsl(191 100% 50% / 0.3)',
+                        }
+                      : {}
+                  }
                 >
                   {link.label}
                 </Link>
@@ -124,12 +136,12 @@ const Navbar = () => {
                   key={link.label}
                   onClick={() => handleNavClick(link.href)}
                   className={`text-base transition-colors pb-1 ${
-                    isActive(link)
+                    active
                       ? "text-[hsl(191,100%,50%)] border-b-2 border-[hsl(191,100%,50%)]"
                       : "text-muted-foreground hover:text-foreground border-b-2 border-transparent"
                   }`}
                   style={
-                    isActive(link)
+                    active
                       ? {
                           textShadow: '0 0 25px hsl(191 100% 50% / 0.8), 0 0 50px hsl(191 100% 50% / 0.5), 0 0 75px hsl(191 100% 50% / 0.3)',
                         }
@@ -138,8 +150,8 @@ const Navbar = () => {
                 >
                   {link.label}
                 </button>
-              )
-            )}
+              );
+            })}
             <a
               href="https://calendly.com/yehia-samy"
               target="_blank"
@@ -171,17 +183,22 @@ const Navbar = () => {
             className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border mx-4 rounded-b-2xl"
           >
             <div className="px-6 py-6 space-y-4">
-              {navLinks.map((link) =>
-                link.isRoute ? (
+              {navLinks.map((link) => {
+                const active = isActive(link);
+                return link.isRoute ? (
                   <Link
                     key={link.label}
                     to={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="block w-full text-center text-base text-muted-foreground hover:text-foreground transition-colors py-2 relative group"
+                    className={`block w-full text-center text-base transition-colors py-2 relative group ${
+                      active ? "text-[hsl(191,100%,50%)]" : "text-muted-foreground hover:text-foreground"
+                    }`}
                   >
                     <span className="relative">
                       {link.label}
-                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[hsl(191,100%,50%)] group-hover:w-full transition-all duration-300"></span>
+                      <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-[hsl(191,100%,50%)] transition-all duration-300 ${
+                        active ? "w-full" : "w-0 group-hover:w-full"
+                      }`}></span>
                     </span>
                   </Link>
                 ) : (
@@ -189,18 +206,18 @@ const Navbar = () => {
                     key={link.label}
                     onClick={() => handleNavClick(link.href)}
                     className={`block w-full text-center text-base transition-colors py-2 relative group ${
-                      isActive(link) ? "text-[hsl(191,100%,50%)]" : "text-muted-foreground hover:text-foreground"
+                      active ? "text-[hsl(191,100%,50%)]" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <span className="relative">
                       {link.label}
                       <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-[hsl(191,100%,50%)] transition-all duration-300 ${
-                        isActive(link) ? "w-full" : "w-0 group-hover:w-full"
+                        active ? "w-full" : "w-0 group-hover:w-full"
                       }`}></span>
                     </span>
                   </button>
-                )
-              )}
+                );
+              })}
               <a
                 href="https://calendly.com/yehia-samy"
                 target="_blank"

@@ -1,0 +1,446 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   Yehia Samy — AI Chatbot Widget
+   Premium dark design with glassmorphism, neural waveform typing animation,
+   and electric violet accent system.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ─── Token Override ────────────────────────────────────────────────────────── */
+#n8n-chat,
+.n8n-chat {
+    /* Core palette — aligned with Yehia's portfolio */
+    --chat--color--primary: #00f2ff; /* Cyan */
+    --chat--color--primary-shade-50: #00d8e4;
+    --chat--color--primary--shade-100: #00acb6;
+    --chat--color--secondary: #8c7cfc; /* Violet */
+    --chat--color-secondary-shade-50: #7c6cfc;
+    --chat--color-white: #ffffff;
+    --chat--color-light: #0e0e1c;
+    --chat--color-light-shade-50: #13132a;
+    --chat--color-light-shade-100: #1a1a38;
+    --chat--color-medium: #252545;
+    --chat--color-dark: #050510;
+    --chat--color-disabled: #1e1e35;
+    --chat--color-typing: #7c6cfc;
+
+    /* Layout */
+    --chat--spacing: 1rem;
+    --chat--border-radius: 0.85rem;
+    --chat--transition-duration: 0.2s;
+    --chat--font-family: 'DM Sans', -apple-system, sans-serif;
+
+    /* Window */
+    --chat--window--width: 390px;
+    --chat--window--height: 600px;
+    --chat--window--bottom: 1.75rem;
+    --chat--window--right: 1.75rem;
+    --chat--window--z-index: 9999;
+    --chat--window--border: 1px solid rgba(124, 108, 252, 0.2);
+    --chat--window--border-radius: 1.25rem;
+
+    /* Header */
+    --chat--header--padding: 1.4rem 1.25rem 1.2rem;
+    --chat--header--background: #08081a;
+    --chat--header--color: #f0f0ff;
+    --chat--header--border-bottom: 1px solid rgba(124, 108, 252, 0.12);
+    --chat--heading--font-size: 1.05rem;
+    --chat--subtitle--font-size: 0.75rem;
+    --chat--subtitle--line-height: 1.7;
+
+    /* Messages */
+    --chat--message--font-size: 0.875rem;
+    --chat--message--padding: 0.8rem 1rem;
+    --chat--message--border-radius: 0.9rem;
+    --chat--message-line-height: 1.65;
+    --chat--message--margin-bottom: 0.65rem;
+    --chat--message--bot--background: rgba(255, 255, 255, 0.04);
+    --chat--message--bot--color: #dcdcf5;
+    --chat--message--bot--border: 1px solid rgba(124, 108, 252, 0.18);
+    --chat--message--user--background: #7c6cfc;
+    --chat--message--user--color: #ffffff;
+    --chat--message--user--border: none;
+    --chat--message--pre--background: rgba(124, 108, 252, 0.08);
+    --chat--messages-list--padding: 1.1rem;
+
+    /* Toggle Orbs */
+    --chat--toggle--background: #00f2ff;
+    --chat--toggle--hover--background: #00d8e4;
+    --chat--toggle--active--background: #00acb6;
+    --chat--toggle--color: #050510;
+
+    /* Input Footer & Send area */
+    --chat--textarea--height: 52px;
+    --chat--input--border: 0;
+    --chat--input--background: #08081a;
+    --chat--input--text-color: #e8e8ff;
+    --chat--input--send--button--background: transparent;
+    --chat--input--send--button--color: #00f2ff;
+    --chat--input--send--button--color-hover: #ffffff;
+
+    /* File button */
+    --chat--input--file--button--background: #08081a;
+    --chat--input--file--button--color: #7c6cfc;
+    --chat--input--file--button--background-hover: #08081a;
+    --chat--input--file--button--color-hover: #a899ff;
+
+    /* Body / footer */
+    --chat--body--background: #0e0e1c;
+    --chat--footer--background: #08081a;
+    --chat--footer--color: #55558a;
+
+    /* Buttons */
+    --chat--button--border-radius: 0.6rem;
+    --chat--button--background--primary: #7c6cfc;
+    --chat--button--color--primary: #ffffff;
+    --chat--button--background--primary--hover: #6a5ce8;
+    --chat--button--color--primary--hover: #ffffff;
+    --chat--button--background--primary--disabled: rgba(124, 108, 252, 0.3);
+    --chat--close--button--color-hover: #7c6cfc;
+}
+
+/* ─── Font override on all n8n elements ─────────────────────────────────────── */
+.n8n-chat *,
+.n8n-chat *::before,
+.n8n-chat *::after {
+    font-family: 'DM Sans', -apple-system, sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+}
+
+/* ─── Toggle button — Glowing orb ─────────────────────────────────────────── */
+.chat-window-toggle {
+    background: linear-gradient(135deg, #00f2ff 0%, #7c6cfc 100%) !important;
+    box-shadow:
+        0 0 25px rgba(0, 242, 255, 0.4),
+        0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    animation: togglePulse 3s ease-in-out infinite !important;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease !important;
+    border: none !important;
+}
+
+.chat-window-toggle:hover {
+    transform: scale(1.08) !important;
+    box-shadow:
+        0 0 40px rgba(0, 242, 255, 0.6),
+        0 12px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+@keyframes togglePulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(124, 108, 252, 0.35), 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(124, 108, 252, 0), 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.chat-window {
+    backdrop-filter: blur(24px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+    background: rgba(14, 14, 28, 0.97) !important;
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(124, 108, 252, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    animation: windowSlideUp 0.35s cubic-bezier(0.34, 1.4, 0.64, 1) forwards !important;
+}
+
+@keyframes windowSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ─── Header — gradient border top + title font ──────────────────────────── */
+.chat-header {
+    border-radius: 1.25rem 1.25rem 0 0 !important;
+    border-top: 2px solid transparent !important;
+    background:
+        linear-gradient(#050510, #050510) padding-box,
+        linear-gradient(90deg, #00f2ff, #7c6cfc, #00f2ff) border-box !important;
+    position: relative !important;
+}
+
+.n8n-chat__header-title {
+    font-family: 'Syne', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1.05rem !important;
+    letter-spacing: -0.02em !important;
+    color: #f0f0ff !important;
+}
+
+/* Status dot before subtitle */
+.n8n-chat__header-subtitle {
+    font-size: 0.72rem !important;
+    color: #7070a8 !important;
+    letter-spacing: 0.03em !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.n8n-chat__header-subtitle::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 50% !important;
+    background: #22d3a0 !important;
+    box-shadow: 0 0 8px rgba(34, 211, 160, 0.7) !important;
+    animation: statusBlink 2.5s ease-in-out infinite !important;
+    flex-shrink: 0 !important;
+}
+
+@keyframes statusBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* ─── Messages list — custom scrollbar ───────────────────────────────────── */
+.n8n-chat__messages-list {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(124, 108, 252, 0.3) transparent !important;
+}
+
+.n8n-chat__messages-list::-webkit-scrollbar {
+    width: 3px;
+}
+
+.n8n-chat__messages-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.n8n-chat__messages-list::-webkit-scrollbar-thumb {
+    background: rgba(124, 108, 252, 0.35);
+    border-radius: 2px;
+}
+
+/* ─── Bot message — glass card ──────────────────────────────────────────── */
+.chat-message-from-bot .chat-message-bubble,
+.chat-message-bubble:not([class*='user']) {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(124, 108, 252, 0.18) !important;
+    backdrop-filter: blur(8px) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2) !important;
+    border-radius: 0.9rem 0.9rem 0.9rem 0.2rem !important;
+}
+
+/* ─── User message — gradient bubble ────────────────────────────────────── */
+.chat-message-from-user .chat-message-bubble {
+    background: linear-gradient(135deg, #00f2ff 0%, #7c6cfc 100%) !important;
+    color: #050510 !important;
+    border: none !important;
+    box-shadow: 0 4px 20px rgba(0, 242, 255, 0.25) !important;
+    border-radius: 0.9rem 0.9rem 0.2rem 0.9rem !important;
+    font-weight: 500 !important;
+}
+
+/* ─── Message entrance animation ────────────────────────────────────────── */
+.n8n-chat__message {
+    animation: msgFadeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+}
+
+@keyframes msgFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── Input Area Cleanup — No white boxes ─────────────────────────────── */
+.chat-footer {
+    background: #08081a !important;
+    border-top: 1px solid rgba(0, 242, 255, 0.1) !important;
+    padding: 12px 16px 16px !important;
+    border-radius: 0 0 1.25rem 1.25rem !important;
+}
+
+.chat-inputs {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.chat-inputs textarea {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(0, 242, 255, 0.1) !important;
+    border-radius: 0.75rem !important;
+    color: #e8e8ff !important;
+    padding: 12px !important;
+    font-size: 0.875rem !important;
+    transition: border-color 0.2s ease !important;
+}
+
+.chat-inputs textarea:focus {
+    border-color: #00f2ff !important;
+}
+
+.chat-input-send-button {
+    background: transparent !important;
+    border: none !important;
+    color: #00f2ff !important;
+    width: 44px !important;
+    height: 44px !important;
+    flex-shrink: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+.chat-input-send-button:hover {
+    color: #ffffff !important;
+    transform: scale(1.1) !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   CUSTOM TYPING / THINKING ANIMATION
+   ════════════════════════════════════════════════════════════════════════════
+ 
+   This replaces n8n's default 3-dot bouncing animation with a
+   neural waveform: 5 vertical bars pulsing at staggered frequencies,
+   paired with a glowing "thinking" label.
+ 
+   Injected via MutationObserver in ChatWidget.tsx
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* Hide default dots completely */
+.chat-message-typing span,
+.chat-message-typing-circle {
+    display: none !important;
+}
+
+/* Wrapper */
+.ys-thinking {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 0;
+}
+
+/* "thinking" text label */
+.ys-thinking__label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(124, 108, 252, 0.7);
+    animation: labelPulse 2s ease-in-out infinite;
+}
+
+@keyframes labelPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Waveform container */
+.ys-thinking__wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 20px;
+}
+
+/* Each bar */
+.ys-thinking__bar {
+    display: block;
+    width: 3px;
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #a899ff 0%, #7c6cfc 100%);
+    box-shadow: 0 0 6px rgba(124, 108, 252, 0.6);
+    transform-origin: center bottom;
+    animation: waveBar 1.1s ease-in-out infinite;
+}
+
+/* Staggered heights so they feel organic */
+.ys-thinking__bar:nth-child(1) {
+    animation-delay: 0.0s;
+}
+
+.ys-thinking__bar:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.ys-thinking__bar:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.ys-thinking__bar:nth-child(4) {
+    animation-delay: 0.1s;
+}
+
+.ys-thinking__bar:nth-child(5) {
+    animation-delay: 0.0s;
+}
+
+@keyframes waveBar {
+
+    0%,
+    100% {
+        transform: scaleY(0.25);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+/* ─── Shimmer on bot bubble while AI is responding ──────────────────────── */
+.chat-message-typing {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(124, 108, 252, 0.18) !important;
+    border-radius: 0.9rem 0.9rem 0.9rem 0.2rem !important;
+    padding: 1rem !important;
+}
+
+.chat-message-typing-body {
+    display: none !important;
+}
+
+@keyframes shimmerSlide {
+    from {
+        background-position: 200% 0;
+    }
+
+    to {
+        background-position: -200% 0;
+    }
+}

@@ -8,6 +8,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import LoadingScreen from "@/components/LoadingScreen";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import ChatWidget from "@/components/ChatWidget";
 
 const Contact = lazy(() => import("./pages/Contact.tsx"));
 
@@ -35,7 +36,7 @@ const App = () => {
             <LoadingScreen key="loading" />
           ) : (
             <BrowserRouter key="content">
-              <Suspense fallback={<LoadingScreen />}>
+              <Suspense fallback={null}>
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/contact" element={<Contact />} />
@@ -45,6 +46,9 @@ const App = () => {
             </BrowserRouter>
           )}
         </AnimatePresence>
+
+        {/* ✅ Chatbot — lives outside router, renders globally */}
+        {!isLoading && <ChatWidget />}
       </TooltipProvider>
     </QueryClientProvider>
   );

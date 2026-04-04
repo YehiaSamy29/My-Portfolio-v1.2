@@ -27,7 +27,7 @@ const services: Service[] = [
     title: "Build & Connect the System",
     description:
       "AI systems connect to every tool your business already runs — CRMs, inboxes, calendars, and more — so data flows automatically and nothing requires a human to move it.",
-    tags: ["n8n", "Make.com", "CRM/API Integration"],
+    tags: ["n8n", "MCP", "CRM/API Integration"],
   },
   {
     icon: Wrench,
@@ -108,25 +108,28 @@ const ServicesSection = () => {
     <section id="services" className="py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden">
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-[hsl(191,100%,50%,0.03)] to-background"></div>
-      
+
       {/* Floating orbs */}
       <div className="absolute top-1/4 left-10 w-64 h-64 bg-[hsl(191,100%,50%)] rounded-full blur-[100px] opacity-10 animate-pulse"></div>
       <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-[hsl(252,90%,67%)] rounded-full blur-[120px] opacity-10 animate-pulse" style={{ animationDelay: '1s' }}></div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-[hsl(191,100%,50%,0.1)] border border-[hsl(191,100%,50%,0.3)] mb-4">
-            <span className="text-xs font-semibold text-[hsl(191,100%,50%)] uppercase tracking-wider">Services</span>
-          </div>
-          <div className="section-badge mx-auto w-fit mb-4">WHAT I DELIVER</div>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <div className="section-badge mx-auto w-fit mb-6">SERVICES / WHAT I DELIVER</div>
+          <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6">
             From First Audit to <span className="gradient-text">Full Autopilot</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
             Every engagement starts with finding where you're losing money. Then I build the system. Then I keep it running.
           </p>
-        </div>
+        </motion.div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

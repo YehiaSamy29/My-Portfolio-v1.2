@@ -18,14 +18,15 @@ const AboutSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-16 relative z-10"
         >
-          <div className="inline-block px-4 py-1.5 rounded-full bg-[hsl(191,100%,50%,0.1)] border border-[hsl(191,100%,50%,0.3)] mb-4">
-            <span className="text-xs font-semibold text-[hsl(191,100%,50%)] uppercase tracking-wider">About Me</span>
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold">
+          <div className="section-badge mx-auto w-fit mb-6">ABOUT ME</div>
+          <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6">
             Meet Your <span className="gradient-text">Automation Partner</span>
           </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
+            I don't just build workflows. I build systems that free founders to focus on growth.
+          </p>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

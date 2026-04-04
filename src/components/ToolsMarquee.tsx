@@ -1,36 +1,36 @@
 import { motion } from "framer-motion";
-import { 
-  Workflow, 
-  Brain, 
-  Sheet, 
-  Mail, 
-  MessageSquare, 
-  FileText, 
-  Database, 
-  Calendar, 
-  File, 
-  Target, 
-  Zap, 
-  GitBranch, 
-  Users, 
-  Send, 
-  Phone, 
-  Bot, 
-  Sparkles, 
-  Gem, 
-  Network, 
-  Search, 
-  Pin, 
-  Volume2, 
-  CreditCard, 
-  ShoppingCart, 
-  Package, 
-  Globe, 
-  Crosshair, 
-  BarChart3, 
-  Cloud, 
-  CheckSquare, 
-  ListTodo, 
+import {
+  Workflow,
+  Brain,
+  Sheet,
+  Mail,
+  MessageSquare,
+  FileText,
+  Database,
+  Calendar,
+  File,
+  Target,
+  Zap,
+  GitBranch,
+  Users,
+  Send,
+  Phone,
+  Bot,
+  Sparkles,
+  Gem,
+  Network,
+  Search,
+  Pin,
+  Volume2,
+  CreditCard,
+  ShoppingCart,
+  Package,
+  Globe,
+  Crosshair,
+  BarChart3,
+  Cloud,
+  CheckSquare,
+  ListTodo,
   MousePointer,
   Headphones
 } from "lucide-react";
@@ -98,7 +98,7 @@ const tools: Tool[] = [
 
 const ToolsMarquee = () => {
   // Duplicate tools for seamless loop
-  const duplicatedTools = [...tools, ...tools, ...tools];
+  const duplicatedTools = [...tools, ...tools];
 
   return (
     <section className="py-12 overflow-hidden relative bg-card/30 border-y border-border/50">
@@ -106,19 +106,20 @@ const ToolsMarquee = () => {
         {/* Gradient overlays for fade effect */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-card/30 via-card/30 to-transparent z-10 pointer-events-none"></div>
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-card/30 via-card/30 to-transparent z-10 pointer-events-none"></div>
-        
+
         {/* Scrolling container */}
         <div className="flex">
           <motion.div
             className="flex gap-8 items-center"
+            style={{ willChange: "transform", backfaceVisibility: "hidden" }}
             animate={{
-              x: [0, -1600],
+              x: ["0%", "-33.33%"],
             }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 25,
+                duration: 60,
                 ease: "linear",
               },
             }}
@@ -130,9 +131,9 @@ const ToolsMarquee = () => {
                   key={`${tool.name}-${index}`}
                   className="flex items-center gap-3 px-6 py-4 rounded-xl bg-card border border-border hover:border-[hsl(191,100%,50%,0.5)] hover:shadow-md transition-all shrink-0 group"
                 >
-                  <IconComponent 
-                    size={28} 
-                    className="text-muted-foreground group-hover:text-[hsl(191,100%,50%)] group-hover:scale-110 transition-all" 
+                  <IconComponent
+                    size={28}
+                    className="text-muted-foreground group-hover:text-[hsl(191,100%,50%)] group-hover:scale-110 transition-all"
                   />
                   <span className="text-lg font-semibold text-muted-foreground group-hover:text-[hsl(191,100%,50%)] transition-colors whitespace-nowrap">
                     {tool.name}

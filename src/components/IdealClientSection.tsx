@@ -22,14 +22,15 @@ const IdealClientSection = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-12 relative z-10"
+        className="text-center mb-16 relative z-10"
       >
-        <div className="inline-block px-4 py-1.5 rounded-full bg-[hsl(252,90%,67%,0.1)] border border-[hsl(252,90%,67%,0.3)] mb-4">
-          <span className="text-xs font-semibold text-[hsl(252,90%,67%)] uppercase tracking-wider">Ideal Client</span>
-        </div>
-        <h2 className="font-display text-3xl sm:text-4xl font-bold">
+        <div className="section-badge-secondary mx-auto w-fit mb-6">IDEAL CLIENT</div>
+        <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6">
           Is This <span className="gradient-text">Right For You?</span>
         </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
+          I work best with mature businesses that have established workflows but are hitting a manual scale ceiling.
+        </p>
       </motion.div>
       
       <motion.div
