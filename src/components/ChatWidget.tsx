@@ -7,7 +7,7 @@ const ChatWidget = () => {
     useEffect(() => {
         const chat = createChat({
             webhookUrl:
-                "https://yehiasamy-auto.app.n8n.cloud/webhook/c6af4f6c-91db-4986-b22e-8e0c5de05779/chat",
+                "https://yehiasamy-auto2.app.n8n.cloud/webhook/c6af4f6c-91db-4986-b22e-8e0c5de05779/chat",
             webhookConfig: {
                 method: "POST",
                 headers: {},
